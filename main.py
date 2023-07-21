@@ -37,7 +37,7 @@ class RedisSentinelTaskSet(TaskSet):
         )
 
     def get_master(self):
-        self.master = self.sentinel.sentinel_master("mymaster")  # Change this to your master service name
+        self.master = self.sentinel.sentinel_master("master")  # Change this to your master service name
         return self.master
 
     def get_redis_connection(self, host, port, password=None, db=0):
