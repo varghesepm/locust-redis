@@ -1,8 +1,8 @@
-from locust import Locust, TaskSet, task, between
+from locust import User, task, between
 import redis
 from redis.sentinel import Sentinel
 
-class RedisSentinelTaskSet(TaskSet):
+class RedisSentinelUser(User):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.sentinel = Sentinel([('int-redis-tester', 26379)], socket_timeout=0.1)
@@ -19,6 +19,6 @@ class RedisSentinelTaskSet(TaskSet):
         key = "test_key"
         self.master.get(key)
 
-class RedisSentinelLocust(Locust):
-    task_set = RedisSentinelTaskSet
+class RedisSentinelLocust(User):
     wait_time = between(1, 3)  # Time between consecutive tasks
+    tasks = [RedisSentinelUser]
