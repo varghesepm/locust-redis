@@ -6,7 +6,7 @@ class RedisSentinelUser(User):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.sentinel = Sentinel([('int-redis-tester', 26379)], socket_timeout=0.1)
-        self.master = self.sentinel.master_for('mymaster', socket_timeout=0.1)
+        self.master = self.sentinel.master_for('master', socket_timeout=0.1)
 
     @task(1)
     def write_to_redis(self):
