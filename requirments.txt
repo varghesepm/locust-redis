@@ -1,4 +1,4 @@
-locust==2.7.3
+locust
 argparse
 redis
 kubernetes
