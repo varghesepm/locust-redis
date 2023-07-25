@@ -44,7 +44,7 @@ class RedisSentinelUser(User):
         sentinel_master = SentinelMasterPod(namespace='antelope-int', sentinel_service_name='int-redis-tester')
         # Get the name of the Redis Sentinel master pod
         self.master_pod = sentinel_master.get_sentinel_master_pod()
-        self.sentinel_master = redis.StrictRedis(host=self.master_pod, port=6379, decode_responses=True)
+        self.sentinel_master = redis.StrictRedis(host=self.master_pod, port=26379, decode_responses=True)
 
     @task(1)
     def write_to_redis(self):
