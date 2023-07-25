@@ -1,7 +1,8 @@
 ### Pyhton
 from kubernetes import client, config
 from locust import User, task, between
-import time redis
+import time 
+import redis
 
 class SentinelMasterPod:
     def __init__(self, namespace='antelope-int', sentinel_service_name='int-redis-tester'):
