@@ -4,7 +4,7 @@ from kubernetes import client, config
 import time
 
 class SentinelMasterPod:
-    def __init__(self, namespace='default', sentinel_service_name='int-redis-tester'):
+    def __init__(self, namespace='antelope-int', sentinel_service_name='int-redis-tester'):
         self.namespace = namespace
         self.sentinel_service_name = sentinel_service_name
         self.api = None
@@ -54,7 +54,7 @@ class RedisSentinelUser(User):
 
     def on_start(self):
         # Initialize the SentinelMasterPod class with the namespace and the service name of the Redis Sentinel
-        sentinel_master = SentinelMasterPod(namespace='default', sentinel_service_name='int-redis-tester')
+        sentinel_master = SentinelMasterPod(namespace='antelope-int', sentinel_service_name='int-redis-tester')
         # Get the address of the Redis Sentinel master pod
         self.master_pod = sentinel_master.get_sentinel_master_pod()
 
